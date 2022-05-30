@@ -25,3 +25,9 @@ function operate(chosenOp, a, b) {  //Operator function
         return divide(a, b);
     }
 }
+
+const numberButtons = document.querySelectorAll('number');
+const operatorButtons = document.querySelectorAll('operator');
+const equalsButton = document.querySelector('equals');
+const allClearButton = document.querySelector('all-clear');
+const clearButton = document.querySelector('clear');
