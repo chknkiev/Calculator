@@ -1,33 +1,96 @@
-function add(a, b) {  //Addition function
-    return a + b;
-}
+const calculator = document.querySelector('.calculator');
+const keys = document.querySelector('.button-container');
+const display = document.querySelector('.display');
 
-function subtract(a, b) {  //Subtraction function
-    return a - b;
-}
+keys.addEventListener('click', e => {
+    if (e.target.matches('button')) {
+        const key = e.target;
+        const action = key.dataset.action;
+        const keyContent = key.textContent;
+        const displayedNum = display.textContent;
+        const previousKeyType = calculator.dataset.previousKeyType;
+        
+        if(!action) {
+            if(displayedNum === '0' || previousKeyType === 'operator') {
+                display.textContent = keyContent;
+            } else {
+                display.textContent = displayedNum + keyContent;
+            }
+        };
 
-function multiply(a, b) {  //Multiplication function
-    return a * b;
-}
+        if(action === 'decimal') {
+            if(!displayedNum.includes('.')) {
+                display.textContent = displayedNum + '.';
+            } else if(previousKeyType === 'operator') {
+                display.textContent = '0.'
+            }
+        calculator.dataset.previousKeyType = 'decimal';
+        }
 
-function divide(a, b) {  //Division function
-    return a / b;
-}
+        if(action === 'add' ||
+        action === 'subtract' ||
+        action === 'multiply' ||
+        action === 'divide') {
+            calculator.dataset.previousKeyType = 'operator';
+            calculator.dataset.firstValue = displayedNum;
+            calculator.dataset.operator = action;
+        }
 
-function operate(chosenOp, a, b) {  //Operator function
-    if(chosenOp === "+") {
-        return add(a, b);
-    } else if(chosenOp === "-") {
-        return subtract(a, b);
-    } else if(chosenOp === "*") {
-        return multiply(a, b);
-    } else if(chosenOp === "/") {
-        return divide(a, b);
-    }
-}
+        const calculate = (n1, operator, n2) => {
+            let result = '';
+            if(operator === 'add') {
+                result = parseFloat(n1) + parseFloat(n2);
+            } else if(operator === 'subtract') {
+                result = parseFloat(n1) - parseFloat(n2);
+            } else if(operator === 'multiply') {
+                result = parseFloat(n1) * parseFloat(n2);
+            } else if(operator === 'divide') {
+                result = parseFloat(n1) / parseFloat(n2);
+            }
+            return result
+        }
 
-const numberButtons = document.querySelectorAll('number');
-const operatorButtons = document.querySelectorAll('operator');
-const equalsButton = document.querySelector('equals');
-const allClearButton = document.querySelector('all-clear');
-const clearButton = document.querySelector('clear');
+        if(action === 'calculate') {
+            const firstValue = calculator.dataset.firstValue;
+            const operator = calculator.dataset.operator;
+            const secondValue = displayedNum;
+            calculator.dataset.previousKeyType = 'calculate';
+
+            display.textContent = calculate(firstValue, operator, secondValue);
+        }
+
+        if(action === 'clear') {
+                display.textContent = 0;
+                calculator.dataset.previousKeyType = 'clear';
+        }
+
+        if(action === 'all-clear') {
+            calculator.dataset.firstValue = '';
+            calculator.dataset.modValue = '';
+            calculator.dataset.operator = '';
+            calculator.dataset.previousKeyType = '';
+            display.textContent = 0;
+        }
+    
+        if(action === 'bg') {
+            let letters = "0123456789ABCDEF";
+            let color = "#";
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            display.style.backgroundColor = color;
+        }
+
+        if(action === 'font') {
+            let letters = "0123456789ABCDEF";
+            let color = "#";
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            display.style.color = color;
+        }
+    } 
+});
+
+
+

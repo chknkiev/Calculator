@@ -5,42 +5,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="./script.js"></script>
+    <script src="./script.js" defer></script>
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <div id="calculator">
-        <div id="display">
-            <div id="prevDisplay">Previous +</div>
-            <div id="currDisplay">Display</div>
+    <div class="calculator">
+        <div class="display">0</div>
+        <div class="button-container">
+            <button class="displayBG" data-action="bg">BG</button>
+            <button class="displayFont" data-action="font">Font</button>
+            <button class="delete" data-action="all-clear">AC</button>
+            <button class="delete" data-action="clear">C</button>
+            <button>7</button>
+            <button>8</button>
+            <button>9</button>
+            <button class="operator" data-action="divide">/</button>
+            <button>4</button>
+            <button>5</button>
+            <button>6</button>
+            <button class="operator" data-action="multiply">*</button>
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <button class="operator" data-action="subtract">-</button>
+            <button data-action="decimal">.</button>
+            <button>0</button>
+            <button class="equals" data-action="calculate">=</button>
+            <button class="operator" data-action="add">+</button>
         </div>
-        <div>
-            <button id="all-clear">AC</button>
-            <button id="clear">C</button>
-        </div>
-        <div id="button-container">
-            <div id="number-container">
-                <button class="number">7</button>
-                <button class="number">8</button>
-                <button class="number">9</button>
-                <button class="number">4</button>
-                <button class="number">5</button>
-                <button class="number">6</button>
-                <button class="number">1</button>
-                <button class="number">2</button>
-                <button class="number">3</button>
-                <button class="number">.</button>
-                <button class="number">0</button>
-                <button id="equals">=</button>
-            </div>
-            <div id="operator-container">
-                <button class="operator">/</button>
-                <button class="operator">*</button>
-                <button class="operator">-</button>
-                <button class="operator">+</button>
-            </div>
-            </div>
-        </div>
-    </div>        
+    </div>
 </body>
 </html>
