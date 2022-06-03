@@ -79,7 +79,7 @@ keys.addEventListener('click', e => {
             const operator = calculator.dataset.operator;
             const secondValue = displayedNum;
             calculator.dataset.previousKeyType = 'operate';
-            
+
             if(calculator.dataset.operator === 'divide' &&
             displayedNum === '0') {
                 alert('Not going to happen!');
@@ -111,23 +111,31 @@ keys.addEventListener('click', e => {
         }
     
 
-        if(action === 'bg') {
+        if(action === 'rainbow') {
             let letters = "0123456789ABCDEF";
             let color = "#";
+            let color2 = "#";
+            let color3 = "#";
             for (let i = 0; i < 6; i++) {
                 color += letters[Math.floor(Math.random() * 16)];
             }
             display.style.backgroundColor = color;
+                
+            for (let j = 0; j < 6; j++) {
+                color2 += letters[Math.floor(Math.random() * 16)];
+            }
+            display.style.color = color2;
+
+            for (let j = 0; j < 6; j++) {
+                color3 += letters[Math.floor(Math.random() * 16)];
+            calculator.style.backgroundColor = color3;
+            }
         }
 
-
-        if(action === 'font') {
-            let letters = "0123456789ABCDEF";
-            let color = "#";
-            for (let i = 0; i < 6; i++) {
-                color += letters[Math.floor(Math.random() * 16)];
-            }
-            display.style.color = color;
+        if(action === 'normal') {
+            calculator.style.backgroundColor = 'black';
+            display.style.backgroundColor = 'lightgrey';
+            display.style.color = 'black';
         }
     } 
 });
